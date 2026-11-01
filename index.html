@@ -1,0 +1,652 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1A237E">
+  <meta name="description" content="Aruy conecta a trabajadores independientes de oficios en Quito con personas que buscan servicios confiables, rápidos y sin intermediarios ni comisiones.">
+  <title>Aruy — Oficios confiables, cerca de ti</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --indigo: #1A237E;
+      --indigo-dark: #111857;
+      --indigo-soft: #e8eaf6;
+      --cochineal: #a51d42;
+      --cochineal-dark: #7d1532;
+      --paper: #fffefa;
+      --surface: #ffffff;
+      --ink: #1c1b1f;
+      --muted: #625f68;
+      --line: #e6e2e8;
+      --mint: #e7f2ec;
+      --radius-xl: 32px;
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --shadow: 0 18px 50px rgba(26, 35, 126, .10);
+      font-family: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+    a { color: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    .wrap { width: min(1120px, calc(100% - 48px)); margin-inline: auto; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--cochineal);
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before {
+      width: 22px;
+      height: 2px;
+      background: currentColor;
+      content: "";
+    }
+    .topbar {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      min-height: 78px;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,.16);
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: #fff;
+      font-size: 1.35rem;
+      font-weight: 850;
+      letter-spacing: -.05em;
+      text-decoration: none;
+    }
+    .brand-mark {
+      display: grid;
+      width: 36px;
+      height: 36px;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,.38);
+      border-radius: 12px;
+      background: rgba(255,255,255,.12);
+      font-size: 1rem;
+      letter-spacing: 0;
+    }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-links a {
+      color: rgba(255,255,255,.82);
+      font-size: .9rem;
+      font-weight: 650;
+      text-decoration: none;
+    }
+    .nav-links a:hover { color: #fff; }
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 82% 30%, rgba(165,29,66,.46), transparent 34%),
+        linear-gradient(132deg, var(--indigo-dark), var(--indigo) 64%, #29358f);
+      color: #fff;
+    }
+    .hero::after {
+      position: absolute;
+      right: -120px;
+      bottom: -340px;
+      width: 620px;
+      height: 620px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 50%;
+      box-shadow: 0 0 0 50px rgba(255,255,255,.035), 0 0 0 100px rgba(255,255,255,.025);
+      content: "";
+      pointer-events: none;
+    }
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      min-height: 570px;
+      align-items: center;
+      grid-template-columns: minmax(0, 1.12fr) minmax(300px, .88fr);
+      gap: 54px;
+      padding-block: 72px 86px;
+    }
+    .hero-copy { max-width: 690px; }
+    .hero .eyebrow { color: #f0a8bd; }
+    h1 {
+      max-width: 720px;
+      margin: 18px 0 20px;
+      font-size: clamp(2.65rem, 5.2vw, 4.65rem);
+      font-weight: 780;
+      letter-spacing: -.065em;
+      line-height: 1.04;
+    }
+    h1 span { color: #f2b5c6; }
+    .hero-copy > p {
+      max-width: 630px;
+      margin: 0;
+      color: rgba(255,255,255,.8);
+      font-size: clamp(1.02rem, 1.7vw, 1.18rem);
+      line-height: 1.75;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 32px; }
+    .button {
+      display: inline-flex;
+      min-height: 52px;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 0 22px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      font-size: .95rem;
+      font-weight: 750;
+      text-align: center;
+      text-decoration: none;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+    .button:hover { transform: translateY(-2px); }
+    .button-primary {
+      background: #fff;
+      color: var(--indigo);
+      box-shadow: 0 8px 22px rgba(0,0,0,.15);
+    }
+    .button-primary:hover { box-shadow: 0 12px 26px rgba(0,0,0,.2); }
+    .button-quiet {
+      border-color: rgba(255,255,255,.34);
+      color: #fff;
+    }
+    .button-quiet:hover { background: rgba(255,255,255,.1); }
+    .button-dark { background: var(--indigo); color: #fff; }
+    .button-dark:hover { background: var(--indigo-dark); }
+    .hero-note { margin: 16px 0 0; color: rgba(255,255,255,.62); font-size: .8rem; }
+    .phone-scene { position: relative; display: grid; min-height: 400px; place-items: center; }
+    .orbit {
+      position: absolute;
+      width: min(360px, 100%);
+      aspect-ratio: 1;
+      border: 1px solid rgba(255,255,255,.19);
+      border-radius: 50%;
+    }
+    .orbit::before, .orbit::after {
+      position: absolute;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 50%;
+      content: "";
+      inset: 28px;
+    }
+    .orbit::after { inset: 62px; }
+    .phone {
+      position: relative;
+      width: 230px;
+      padding: 11px;
+      border: 1px solid rgba(255,255,255,.45);
+      border-radius: 34px;
+      background: #171a36;
+      box-shadow: 0 28px 65px rgba(5,8,35,.4);
+      transform: rotate(3deg);
+    }
+    .phone-screen {
+      overflow: hidden;
+      min-height: 356px;
+      padding: 22px 15px 16px;
+      border-radius: 25px;
+      background: #f8f7fb;
+      color: var(--ink);
+    }
+    .phone-status { display: flex; justify-content: space-between; margin-bottom: 17px; color: #625f68; font-size: .62rem; font-weight: 700; }
+    .app-heading { margin: 0; color: var(--indigo); font-size: 1.1rem; font-weight: 850; letter-spacing: -.04em; }
+    .app-caption { margin: 2px 0 13px; color: var(--muted); font-size: .66rem; }
+    .search-mock {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px;
+      border: 1px solid #e6e2e8;
+      border-radius: 12px;
+      background: #fff;
+      color: #77727d;
+      font-size: .68rem;
+    }
+    .chips { display: flex; gap: 6px; margin: 12px 0; }
+    .chip { padding: 5px 8px; border-radius: 999px; background: var(--indigo-soft); color: var(--indigo); font-size: .56rem; font-weight: 700; }
+    .worker-card {
+      margin-top: 8px;
+      padding: 10px;
+      border: 1px solid #eeeaf0;
+      border-radius: 13px;
+      background: #fff;
+    }
+    .worker-head { display: flex; align-items: center; gap: 9px; }
+    .avatar {
+      display: grid;
+      width: 35px;
+      height: 35px;
+      flex: 0 0 auto;
+      place-items: center;
+      border-radius: 50%;
+      background: #f4dce4;
+      color: var(--cochineal-dark);
+      font-size: .7rem;
+      font-weight: 800;
+    }
+    .worker-name { color: var(--ink); font-size: .68rem; font-weight: 800; }
+    .worker-job { color: var(--muted); font-size: .58rem; }
+    .verified { margin-left: auto; color: #28714b; font-size: .56rem; font-weight: 800; }
+    .rating { margin-top: 8px; color: #8b5a12; font-size: .58rem; }
+    .work-photo {
+      display: flex;
+      height: 48px;
+      align-items: center;
+      gap: 8px;
+      margin-top: 7px;
+      padding: 8px;
+      border-radius: 9px;
+      background: linear-gradient(110deg, #dfe6f5, #f1e2e6);
+      color: var(--indigo);
+      font-size: .59rem;
+      font-weight: 700;
+    }
+    .whatsapp {
+      display: block;
+      margin-top: 8px;
+      padding: 8px;
+      border-radius: 10px;
+      background: #16834a;
+      color: white;
+      font-size: .63rem;
+      font-weight: 800;
+      text-align: center;
+    }
+    .float-tag {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 12px 15px;
+      border: 1px solid rgba(255,255,255,.56);
+      border-radius: 16px;
+      background: rgba(255,255,255,.95);
+      box-shadow: 0 12px 30px rgba(6,10,42,.2);
+      color: var(--indigo);
+      font-size: .76rem;
+      font-weight: 800;
+    }
+    .float-tag span { font-size: 1.2rem; }
+    .float-tag.one { top: 54px; right: 0; }
+    .float-tag.two { bottom: 56px; left: 0; }
+    section { padding-block: 92px; }
+    .section-heading { max-width: 710px; margin-bottom: 42px; }
+    .section-heading h2 {
+      margin: 12px 0 12px;
+      color: var(--indigo-dark);
+      font-size: clamp(2rem, 3.8vw, 3rem);
+      letter-spacing: -.055em;
+      line-height: 1.12;
+    }
+    .section-heading p { max-width: 620px; margin: 0; color: var(--muted); font-size: 1.02rem; }
+    .problem-section { background: #f5f4fa; }
+    .problem-card {
+      display: grid;
+      overflow: hidden;
+      grid-template-columns: .72fr 1.28fr;
+      border: 1px solid #e9e6f0;
+      border-radius: var(--radius-xl);
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+    .stat-panel {
+      display: flex;
+      min-height: 280px;
+      flex-direction: column;
+      justify-content: center;
+      padding: 40px;
+      background: var(--cochineal);
+      color: #fff;
+    }
+    .stat-number { font-size: clamp(4.5rem, 8vw, 6.5rem); font-weight: 850; letter-spacing: -.09em; line-height: 1; }
+    .stat-label { max-width: 230px; margin-top: 14px; color: rgba(255,255,255,.85); font-size: .95rem; font-weight: 650; }
+    .problem-copy { align-self: center; padding: 42px clamp(26px, 5vw, 58px); }
+    .problem-copy p { margin: 0; font-size: clamp(1.05rem, 1.7vw, 1.25rem); line-height: 1.75; }
+    .problem-copy strong { color: var(--cochineal-dark); }
+    .problem-footnote { display: block; margin-top: 15px; color: var(--muted); font-size: .78rem; }
+    .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .step-card {
+      position: relative;
+      min-height: 270px;
+      padding: 27px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .step-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .step-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 30px; }
+    .step-num {
+      display: grid;
+      width: 44px;
+      height: 44px;
+      place-items: center;
+      border-radius: 15px;
+      background: var(--indigo-soft);
+      color: var(--indigo);
+      font-size: .9rem;
+      font-weight: 850;
+    }
+    .step-icon { color: var(--cochineal); font-size: 1.45rem; }
+    .step-card h3 { margin: 0 0 10px; color: var(--indigo-dark); font-size: 1.18rem; letter-spacing: -.025em; }
+    .step-card p { margin: 0; color: var(--muted); font-size: .94rem; }
+    .step-card p strong { color: var(--ink); }
+    .testimonial-section { background: #f5f4fa; }
+    .quote-layout { display: grid; align-items: center; grid-template-columns: .78fr 1.22fr; gap: 58px; }
+    .quote-mark { color: var(--cochineal); font-family: Georgia, serif; font-size: 7rem; line-height: .65; }
+    blockquote {
+      margin: 0;
+      color: var(--indigo-dark);
+      font-size: clamp(1.5rem, 3vw, 2.45rem);
+      font-weight: 650;
+      letter-spacing: -.045em;
+      line-height: 1.35;
+    }
+    .quote-author { display: flex; align-items: center; gap: 13px; margin-top: 25px; }
+    .quote-author .avatar { width: 48px; height: 48px; font-size: .85rem; }
+    .quote-author strong { display: block; color: var(--ink); font-size: .96rem; }
+    .quote-author span { display: block; color: var(--muted); font-size: .84rem; }
+    .quote-aside {
+      padding: 28px;
+      border: 1px solid #e6e2e8;
+      border-radius: var(--radius-lg);
+      background: #fff;
+    }
+    .quote-aside .eyebrow { font-size: .7rem; }
+    .quote-aside h3 { margin: 14px 0 7px; color: var(--indigo-dark); font-size: 1.2rem; }
+    .quote-aside p { margin: 0; color: var(--muted); font-size: .92rem; }
+    .team-section { background: #fff; }
+    .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .team-card { padding: 22px; border: 1px solid var(--line); border-radius: var(--radius-md); background: #fff; }
+    .team-initials {
+      display: grid;
+      width: 48px;
+      height: 48px;
+      place-items: center;
+      border-radius: 16px;
+      background: var(--indigo-soft);
+      color: var(--indigo);
+      font-size: .78rem;
+      font-weight: 850;
+    }
+    .team-card:nth-child(even) .team-initials { background: #f6e5eb; color: var(--cochineal-dark); }
+    .team-card h3 { margin: 17px 0 3px; font-size: 1rem; }
+    .team-card p { margin: 0; color: var(--muted); font-size: .84rem; }
+    .repo-cta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+      margin-top: 30px;
+      padding: 26px 30px;
+      border-radius: var(--radius-lg);
+      background: var(--indigo);
+      color: #fff;
+    }
+    .repo-cta h3 { margin: 0 0 4px; font-size: 1.15rem; }
+    .repo-cta p { margin: 0; color: rgba(255,255,255,.72); font-size: .9rem; }
+    .repo-cta .button { flex: 0 0 auto; background: #fff; color: var(--indigo); }
+    .footer {
+      padding: 42px 0 24px;
+      background: #11152f;
+      color: #fff;
+    }
+    .footer-main { display: flex; align-items: flex-start; justify-content: space-between; gap: 38px; padding-bottom: 30px; }
+    .footer-brand { max-width: 360px; }
+    .footer-brand p { margin: 12px 0 0; color: rgba(255,255,255,.66); font-size: .87rem; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 20px; }
+    .footer-links a { color: rgba(255,255,255,.82); font-size: .86rem; text-decoration: none; }
+    .footer-links a:hover { color: #fff; text-decoration: underline; }
+    .footer-bottom { display: flex; justify-content: space-between; gap: 14px; padding-top: 19px; border-top: 1px solid rgba(255,255,255,.14); color: rgba(255,255,255,.58); font-size: .77rem; }
+    .privacy { padding-block: 50px; background: #171b38; color: rgba(255,255,255,.75); }
+    .privacy h2 { margin: 0 0 10px; color: #fff; font-size: 1.25rem; }
+    .privacy p { max-width: 850px; margin: 0; font-size: .88rem; }
+    :focus-visible { outline: 3px solid #f0a8bd; outline-offset: 4px; }
+
+    @media (max-width: 850px) {
+      .hero-grid { grid-template-columns: 1fr .8fr; gap: 20px; }
+      .phone-scene { transform: scale(.9); }
+      .quote-layout { gap: 30px; }
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 650px) {
+      .wrap { width: min(100% - 36px, 520px); }
+      .topbar { min-height: 68px; }
+      .nav-links { gap: 14px; }
+      .nav-links a { font-size: .78rem; }
+      .nav-links a:nth-child(2) { display: none; }
+      .hero-grid { min-height: 0; grid-template-columns: 1fr; gap: 0; padding-block: 62px 36px; }
+      h1 { font-size: clamp(2.65rem, 12vw, 4rem); }
+      .hero-copy > p { font-size: 1rem; }
+      .hero-actions { align-items: stretch; flex-direction: column; }
+      .hero-actions .button { width: 100%; }
+      .phone-scene { min-height: 370px; margin-top: 12px; transform: scale(.88); }
+      .float-tag.one { right: -2px; }
+      .float-tag.two { left: -2px; }
+      section { padding-block: 68px; }
+      .section-heading { margin-bottom: 30px; }
+      .problem-card { grid-template-columns: 1fr; }
+      .stat-panel { min-height: 220px; padding: 30px; }
+      .problem-copy { padding: 28px; }
+      .steps-grid { grid-template-columns: 1fr; gap: 12px; }
+      .step-card { min-height: 0; padding: 22px; }
+      .step-top { margin-bottom: 20px; }
+      .quote-layout { grid-template-columns: 1fr; gap: 25px; }
+      .quote-mark { font-size: 5rem; }
+      .quote-aside { padding: 23px; }
+      .repo-cta { align-items: flex-start; flex-direction: column; padding: 24px; }
+      .repo-cta .button { width: 100%; }
+      .footer-main { flex-direction: column; }
+      .footer-bottom { flex-direction: column; }
+    }
+    @media (max-width: 390px) {
+      .wrap { width: calc(100% - 28px); }
+      .brand { font-size: 1.2rem; }
+      .nav-links { gap: 10px; }
+      .team-grid { gap: 9px; }
+      .team-card { padding: 16px; }
+      .phone-scene { margin-inline: -16px; transform: scale(.8); }
+      .float-tag { padding: 10px 12px; font-size: .68rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero" id="inicio">
+    <div class="wrap">
+      <nav class="topbar" aria-label="Navegación principal">
+        <a class="brand" href="#inicio" aria-label="Aruy, inicio">
+          <span class="brand-mark" aria-hidden="true">A</span>
+          Aruy
+        </a>
+        <div class="nav-links">
+          <a href="#como-funciona">Cómo funciona</a>
+          <a href="#equipo">El equipo</a>
+          <a href="#repositorio">GitHub ↗</a>
+        </div>
+      </nav>
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">Oficios confiables · Quito</span>
+          <h1>Aruy <span>·</span> Encuentra a quien necesitas, cerca de ti</h1>
+          <p>Conecta directamente a trabajadores independientes de oficios en Quito con personas que buscan servicios confiables, rápidos y sin intermediarios ni comisiones.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="https://github.com/FrameFlow-app/Aruy-app" target="_blank" rel="noopener noreferrer">
+              Probar Aplicación / Ver Prototipo <span aria-hidden="true">↗</span>
+            </a>
+            <a class="button button-quiet" href="#como-funciona">Conoce cómo funciona <span aria-hidden="true">↓</span></a>
+          </div>
+          <p class="hero-note">Hecho para conectar talento local con oportunidades reales.</p>
+        </div>
+        <div class="phone-scene" aria-label="Vista ilustrativa de la aplicación Aruy">
+          <div class="orbit" aria-hidden="true"></div>
+          <div class="float-tag one"><span aria-hidden="true">✓</span> Perfiles verificados</div>
+          <div class="float-tag two"><span aria-hidden="true">✦</span> Trato directo</div>
+          <div class="phone">
+            <div class="phone-screen">
+              <div class="phone-status"><span>9:41</span><span>● ● ●</span></div>
+              <p class="app-heading">Hola, Quito 👋</p>
+              <p class="app-caption">¿Qué necesitas resolver hoy?</p>
+              <div class="search-mock"><span aria-hidden="true">⌕</span> Busca un oficio o barrio</div>
+              <div class="chips"><span class="chip">Plomería</span><span class="chip">Electricidad</span><span class="chip">Obra</span></div>
+              <div class="worker-card">
+                <div class="worker-head">
+                  <div class="avatar" aria-hidden="true">MG</div>
+                  <div><div class="worker-name">Marco Gallardo</div><div class="worker-job">Plomería · Centro Norte</div></div>
+                  <span class="verified">✓</span>
+                </div>
+                <div class="rating">★★★★★ &nbsp; 4.9 · Perfil verificado</div>
+                <div class="work-photo"><span aria-hidden="true">▧</span> Portafolio de trabajos</div>
+                <div class="whatsapp">Contactar por WhatsApp</div>
+              </div>
+              <div class="worker-card">
+                <div class="worker-head">
+                  <div class="avatar" style="background:#e2e8f6;color:#29358f" aria-hidden="true">JP</div>
+                  <div><div class="worker-name">Jorge Paredes</div><div class="worker-job">Electricidad · La Floresta</div></div>
+                  <span class="verified">✓</span>
+                </div>
+                <div class="rating">★★★★★ &nbsp; 4.8 · Perfil verificado</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="problem-section" id="problema">
+      <div class="wrap">
+        <div class="section-heading">
+          <span class="eyebrow">El problema</span>
+          <h2>El buen trabajo merece tener más oportunidades.</h2>
+        </div>
+        <div class="problem-card">
+          <div class="stat-panel">
+            <div class="stat-number">80%</div>
+            <div class="stat-label">de trabajadores independientes de oficios en Quito</div>
+          </div>
+          <div class="problem-copy">
+            <p>El <strong>80% de los trabajadores independientes de oficios en Quito pierden entre $100 y $300 en meses flojos</strong> debido a la falta de canales continuos de difusión, o terminan pagando comisiones abusivas en otras plataformas.</p>
+            <span class="problem-footnote">Problemática identificada en la validación del proyecto Aruy.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="como-funciona">
+      <div class="wrap">
+        <div class="section-heading">
+          <span class="eyebrow">Simple y directo</span>
+          <h2>Encuentra ayuda en tres pasos.</h2>
+          <p>Sin vueltas ni intermediarios: encuentras el oficio, conoces su trabajo y conversas directamente.</p>
+        </div>
+        <div class="steps-grid">
+          <article class="step-card">
+            <div class="step-top"><span class="step-num">01</span><span class="step-icon" aria-hidden="true">⌕</span></div>
+            <h3>Busca por oficio o barrio</h3>
+            <p>Encuentra profesionales cerca de ti en Quito: <strong>plomería, electricidad, albañilería</strong> y más.</p>
+          </article>
+          <article class="step-card">
+            <div class="step-top"><span class="step-num">02</span><span class="step-icon" aria-hidden="true">✧</span></div>
+            <h3>Conoce su trabajo</h3>
+            <p>Revisa un <strong>portafolio real</strong>, calificaciones comunitarias y sellos de verificación.</p>
+          </article>
+          <article class="step-card">
+            <div class="step-top"><span class="step-num">03</span><span class="step-icon" aria-hidden="true">↗</span></div>
+            <h3>Contacta directamente</h3>
+            <p>Escríbele por <strong>WhatsApp con un solo clic</strong>, sin comisiones ni intermediarios.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonial-section" id="validacion">
+      <div class="wrap quote-layout">
+        <div>
+          <span class="eyebrow">Evidencia de validación</span>
+          <div class="quote-mark" aria-hidden="true">“</div>
+          <blockquote>Necesitaba más clientes para hacerme conocer y no solo depender de los mismos de siempre.</blockquote>
+          <div class="quote-author">
+            <div class="avatar" aria-hidden="true">MG</div>
+            <div><strong>Marco Gallardo, 30 años</strong><span>Trabajador de plomería y obra civil en Quito</span></div>
+          </div>
+        </div>
+        <aside class="quote-aside">
+          <span class="eyebrow">Una necesidad real</span>
+          <h3>Más visibilidad para el talento local</h3>
+          <p>La experiencia de Marco refleja el reto de muchos trabajadores independientes: llegar a nuevos clientes, mostrar su experiencia y generar confianza sin ceder parte de sus ingresos en comisiones.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="team-section" id="equipo">
+      <div class="wrap">
+        <div class="section-heading">
+          <span class="eyebrow">Equipo FrameFlow</span>
+          <h2>Personas construyendo conexiones.</h2>
+          <p>Un equipo que cree en el talento de los oficios y en la fuerza de una comunidad conectada.</p>
+        </div>
+        <div class="team-grid">
+          <article class="team-card"><div class="team-initials" aria-hidden="true">GC</div><h3>Gloria Chushig</h3><p>Product Owner</p></article>
+          <article class="team-card"><div class="team-initials" aria-hidden="true">AB</div><h3>Alisson Basantes</h3><p>Scrum Master</p></article>
+          <article class="team-card"><div class="team-initials" aria-hidden="true">DT</div><h3>David Tapia</h3><p>Desarrollo</p></article>
+          <article class="team-card"><div class="team-initials" aria-hidden="true">KM</div><h3>Karol Moreno</h3><p>Desarrollo</p></article>
+        </div>
+        <div class="repo-cta" id="repositorio">
+          <div><h3>Explora el proyecto Aruy</h3><p>Conoce el código, los avances y el trabajo de FrameFlow en GitHub.</p></div>
+          <a class="button" href="https://github.com/FrameFlow-app/Aruy-app" target="_blank" rel="noopener noreferrer">Ver repositorio <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <a class="brand" href="#inicio"><span class="brand-mark" aria-hidden="true">A</span>Aruy</a>
+          <p>Oficios confiables, cerca de ti. Una iniciativa de FrameFlow para Quito.</p>
+        </div>
+        <nav class="footer-links" aria-label="Enlaces del pie de página">
+          <a href="#privacidad">Política de Privacidad</a>
+          <a href="https://github.com/FrameFlow-app/Aruy-app" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          <a href="#inicio">Volver arriba ↑</a>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Aruy · FrameFlow. Licencia abierta MIT.</span>
+        <span>Universidad Católica del Ecuador (PUCE) · NRC 2667</span>
+      </div>
+    </div>
+  </footer>
+  <section class="privacy" id="privacidad" aria-labelledby="privacy-title">
+    <div class="wrap">
+      <h2 id="privacy-title">Política de Privacidad</h2>
+      <p>Esta landing page es informativa y no recopila datos personales ni utiliza cookies de seguimiento. Si contactas a un trabajador desde la aplicación, la comunicación se realiza directamente entre ustedes a través de WhatsApp. Para consultas sobre privacidad, puedes contactar al equipo FrameFlow mediante el repositorio público de Aruy.</p>
+    </div>
+  </section>
+</body>
+</html>
